@@ -13,7 +13,7 @@ const BookShelf = ({ bookshelfTitle, books }) => {
                   key={book.title}
                   title={book.title}
                   authors={book.authors}
-                  backgroundImageUrl={book.backgroundImageUrl}
+                  backgroundImageUrl={book.imageLinks.thumbnail}
                 />
               </li>
             );
