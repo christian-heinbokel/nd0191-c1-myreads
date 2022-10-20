@@ -1,4 +1,14 @@
-const Book = ({ backgroundImageUrl, title, authors }) => {
+import { useState } from "react";
+
+const Book = ({ book, updateBook }) => {
+  const [bookshelf, setBookShelf] = useState(book.shelf);
+
+  const handleSelect = (e) => {
+    const newBookshelf = e.target.value;
+    setBookShelf(newBookshelf);
+    updateBook(book, newBookshelf);
+  };
+
   return (
     <div className="book">
       <div className="book-top">
@@ -7,11 +17,11 @@ const Book = ({ backgroundImageUrl, title, authors }) => {
           style={{
             width: 128,
             height: 192,
-            backgroundImage: `url("${backgroundImageUrl}")`,
+            backgroundImage: `url("${book.imageLinks.thumbnail}")`,
           }}
         ></div>
         <div className="book-shelf-changer">
-          <select>
+          <select value={bookshelf} onChange={(e) => handleSelect(e)}>
             <option value="none" disabled>
               Move to...
             </option>
@@ -22,8 +32,8 @@ const Book = ({ backgroundImageUrl, title, authors }) => {
           </select>
         </div>
       </div>
-      <div className="book-title">{title}</div>
-      <div className="book-authors">{authors}</div>
+      <div className="book-title">{book.title}</div>
+      <div className="book-authors">{book.authors}</div>
     </div>
   );
 };
