@@ -12,14 +12,21 @@ const ListBooks = ({ showSearchPage, setShowSearchpage }) => {
     async function fetchBooks() {
       let books = await BooksAPI.getAll();
       setBooks(books);
-      console.log("received books: ", books);
     }
     fetchBooks();
   }, []);
+
+  const updateBook = (book, newShelf) => {
+    BooksAPI.update(book, newShelf).then(() => {
+      book.shelf = newShelf;
+      setBooks((books) => books.filter((b) => b.id !== book.id).concat(book));
+    });
+  };
+
   return (
     <div className="list-books">
       <ListBooksTitle />
-      <ListBooksContent books={books} />
+      <ListBooksContent books={books} updateBook={updateBook} />
       <OpenSearchButton
         setShowSearchpage={setShowSearchpage}
         showSearchpage={showSearchPage}
