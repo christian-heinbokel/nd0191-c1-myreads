@@ -1,4 +1,7 @@
+import { useState } from "react";
 const SearchBooks = ({ setShowSearchpage, showSearchPage }) => {
+  const [query, setQuery] = useState("");
+
   return (
     <div className="search-books">
       <div className="search-books-bar">
@@ -9,7 +12,14 @@ const SearchBooks = ({ setShowSearchpage, showSearchPage }) => {
           Close
         </a>
         <div className="search-books-input-wrapper">
-          <input type="text" placeholder="Search by title, author, or ISBN" />
+          <input
+            type="text"
+            value={query}
+            onChange={(event) => {
+              setQuery(event.target.value);
+            }}
+            placeholder="Search by title, author, or ISBN"
+          />
         </div>
       </div>
       <div className="search-books-results">
