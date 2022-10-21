@@ -1,25 +1,20 @@
 import { useState } from "react";
+import BookCover from "./BookCover";
 
-const Book = ({ book, updateBook }) => {
-  const [bookshelf, setBookShelf] = useState(book.shelf);
+const Book = ({ book, updateBookFn }) => {
+  const [bookshelf, setBookShelf] = useState(book.shelf ?? "none");
 
   const handleSelect = (e) => {
     const newBookshelf = e.target.value;
     setBookShelf(newBookshelf);
-    updateBook(book, newBookshelf);
+    updateBookFn(book, newBookshelf);
   };
 
   return (
     <div className="book">
       <div className="book-top">
-        <div
-          className="book-cover"
-          style={{
-            width: 128,
-            height: 192,
-            backgroundImage: `url("${book.imageLinks.thumbnail}")`,
-          }}
-        ></div>
+        <BookCover book={book}></BookCover>
+
         <div className="book-shelf-changer">
           <select value={bookshelf} onChange={(e) => handleSelect(e)}>
             <option value="none" disabled>

@@ -1,22 +1,22 @@
 import BookShelf from "./BookShelf";
 
-const ListBooksContent = ({ books, updateBook }) => {
+const ListBooksContent = ({ books, updateBookFn }) => {
   return (
     <div className="list-books-content">
       <BookShelf
         bookshelfTitle={"Currently Reading"}
         books={books.filter((book) => book.shelf === "currentlyReading")}
-        updateBook={updateBook}
+        updateBookFn={updateBookFn}
       />
       <BookShelf
         bookshelfTitle={"Want to read"}
         books={books.filter((book) => book.shelf === "wantToRead")}
-        updateBook={updateBook}
+        updateBookFn={updateBookFn}
       />
       <BookShelf
         bookshelfTitle={"Read"}
         books={books.filter((book) => book.shelf === "read")}
-        updateBook={updateBook}
+        updateBookFn={updateBookFn}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import Book from "./Book";
 
-const BookShelf = ({ bookshelfTitle, books, updateBook }) => {
+const BookShelf = ({ bookshelfTitle, books, updateBookFn }) => {
   return (
     <div className="bookshelf">
       <h2 className="bookshelf-title">{bookshelfTitle}</h2>
@@ -9,7 +9,7 @@ const BookShelf = ({ bookshelfTitle, books, updateBook }) => {
           {books.map((book) => {
             return (
               <li key={book.id}>
-                <Book book={book} updateBook={updateBook} />
+                <Book book={book} updateBookFn={updateBookFn} />
               </li>
             );
           })}
