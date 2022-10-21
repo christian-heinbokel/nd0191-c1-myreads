@@ -5,7 +5,7 @@ import OpenSearchButton from "./OpenSearchButton";
 import { useEffect, useState } from "react";
 import * as BooksAPI from "../BooksAPI";
 
-const ListBooks = ({ showSearchPage, setShowSearchpage }) => {
+const ListBooks = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -27,10 +27,7 @@ const ListBooks = ({ showSearchPage, setShowSearchpage }) => {
     <div className="list-books">
       <ListBooksTitle />
       <ListBooksContent books={books} updateBook={updateBook} />
-      <OpenSearchButton
-        setShowSearchpage={setShowSearchpage}
-        showSearchpage={showSearchPage}
-      ></OpenSearchButton>
+      <OpenSearchButton />
     </div>
   );
 };
